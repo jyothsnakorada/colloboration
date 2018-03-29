@@ -1,22 +1,27 @@
+/**
+ * ChatController
+ */
 app.controller('ChatController',  function($rootScope ,$scope, ChatService) {
     alert('entering chat controller')
     $scope.chats = [];
     $scope.stompClient = ChatService.stompClient;
     $scope.users=[]
+    
     $scope.$on('sockConnected', function(event, frame) {
     	alert('sockconnected')
         $scope.userName=$rootScope.loggedInUser.firstname;
         $scope.stompClient.subscribe("/topic/join", function(message) {
         	
-            user = JSON.parse(message.body);
+           // user = JSON.parse(message.body);
+            user=JSON.stringify(message.body);
             console.log(user)
            
             if(user != $scope.userName && $.inArray(user, $scope.users) == -1) {
                 $scope.addUser(user);
                 $scope.latestUser = user;
                 $scope.$apply();
-                $('#joinedChat').fadeIn(500).delay(2000).fadeOut(500);
-             }
+                $('#joinedChat').fadeIn(500).delay(10000).fadeOut(500);
+            }
             
         });
         
@@ -48,14 +53,7 @@ app.controller('ChatController',  function($rootScope ,$scope, ChatService) {
         $scope.$apply();
     };
  
-    
-    
-    
-    
-    
-    
-    $scope.$on('sockConnected', function(event, frame) {
-        $scope.userName=$rootScope.currentUser.username;
+     $scope.$on('sockConnected', function(event, frame) {
   
         $scope.user=$rootScope.loggedInUser.firstname;
        

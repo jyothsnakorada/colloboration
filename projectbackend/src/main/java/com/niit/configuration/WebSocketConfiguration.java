@@ -2,8 +2,11 @@ package com.niit.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+
+
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
@@ -14,7 +17,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Configuration
 @EnableWebSocketMessageBroker  // enable broker based stomp messaging
 @ComponentScan(basePackages="com.niit")
-public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer{
+public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
 
 	
@@ -31,7 +34,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer{
 		configurer.setApplicationDestinationPrefixes("/app");
 	}
 
-	 
+	
 	public void configureClientInboundChannel(ChannelRegistration registration) {
 		// TODO Auto-generated method stub
 		
